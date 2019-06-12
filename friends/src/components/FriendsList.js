@@ -1,10 +1,14 @@
 import React from 'react';
+import FriendsForm from './FriendsForm';
 
 
 
 const FriendsList = (props) => {
     return (
+        
         <div>
+            <h1>Fake friends</h1> 
+            <br/>
             {props.friends.map(friend => (
                 <div className="friend-card" key={friend.id}>
                     <h1>Id: {friend.id}</h1>
@@ -13,14 +17,12 @@ const FriendsList = (props) => {
                     <h2>Email: {friend.email}</h2>
                 </div>
             ))}
-             
-               
-            
-            <h1>FriendsList</h1>
+            <FriendsForm />
         </div>
+
     )
 }
 
-export default FriendsList
+export default FriendsList;
 
 
