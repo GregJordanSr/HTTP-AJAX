@@ -1,25 +1,18 @@
 import React from 'react';
 import FriendsForm from './FriendsForm';
+import Friend from './Friend';
+
 
 
 
 const FriendsList = (props) => {
     return (
         
-        <div className="friend-container">
-            <br/>
-            <br/>
+        <div className="friends-list">
             <FriendsForm />
-            <h1>Fake friends</h1> 
-            <br/>
-            {props.friends.map(friend => (
-                <div className="friend-card" key={friend.id}>
-                    <h1>Name: {friend.name}</h1>
-                    <h2>Age: {friend.age}</h2>
-                    <h2>Email: {friend.email}</h2>
-                </div>
-            ))}
-            
+            {props.friends.map(friend => 
+                <Friend key={friend.id} friend={friend}/>
+            )}
         </div>
 
     )

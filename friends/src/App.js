@@ -5,28 +5,27 @@ import FriendsList from './components/FriendsList';
 
 
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
+    state = {
       friends: []
     };
-  }
+  
 
   componentDidMount() {
     axios
     .get("http://localhost:5000/friends")
-    .then(resolve => {
-      console.log(resolve);
-       this.setState({ friends: resolve.data })
+    .then(response => {
+      console.log(response);
+       this.setState({ friends: response.data })
     })
     .catch(error => {
       console.log(error);
+        this.setState({ error: error})
     })
   }
 
   render() {
     return (
-      <div>
+      <div className="App">
         <FriendsList friends={this.state.friends}/>
       </div>
     )
