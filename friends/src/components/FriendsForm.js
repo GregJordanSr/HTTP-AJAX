@@ -2,24 +2,53 @@ import React from 'react'
 import './friendsForm.css';
 
  class FriendsForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            friend: {
+                name: '',
+                age: '',
+                email: '',
+                id: 0
+            },
+            active: false
+        }
+        
+    }
+
+    changeHandler = e => {
+        e.persist();
+        this.setState(prevState => ({ friend: {...prevState.friend, [e.target.name]: e.target.value}}))
+    }
+
+    submitHandler = (e, friend) => {
+        if (this.state.active) {
+            *updateFunctionHere*
+        } else {
+            *addFriendHere*
+        }
+    }
+
     render() {
         return (
             <div className="form-container">
                 <form className="form">
                     Friend's Name:
                     <br/>
-                    <input type="text" placeholder="Name" required /><br/>
+                    <input name="name" value={this.state.friend.name} type="text" placeholder="Name" required onChange={this.changeHandler} /><br/>
                     Friend's Age:
                     <br/>
-                    <input type="text" placeholder="Age" required /><br/>
-                    Friend's Email:
+                    <input name="age" value={this.state.friend.age} type="number" placeholder="Age" required onChange={this.changeHandler} /><br/>
+                    Friend's E-mail:
                     <br/>
-                    <input type="email" placeholder="Email" required /><br/>
+                    <input name="email" value={this.state.friend.email} type="email" placeholder="E-mail" required onChange={this.changeHandler} /><br/>
                     <br/>
+
+                    <div className="update-button"> 
+                        <button>{`${this.state.active ? 'Update' : 'Add Friend' }`}</button>
+                    </div>
                 </form>
-                <div className="update-button"> 
-                    <button>Add</button>
-                </div>
+                value={this.state.friend} 
             
             </div>
         )

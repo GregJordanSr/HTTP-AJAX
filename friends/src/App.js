@@ -25,6 +25,22 @@ export default class App extends Component {
     })
   }
 
+  addFriend = (e, friend) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:5000/friends', friend)
+      .then(res => this.setState({ friends: res.data}))
+      .catch(err => console.log(err))
+  }
+
+  updateFriend = (e, friend) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/friends/${friend.id}`, friend)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div className="App">
